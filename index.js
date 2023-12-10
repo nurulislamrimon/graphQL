@@ -3,13 +3,14 @@ import bodyParser from "body-parser";
 import express from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
-import { productSchema } from "./productSchema.js";
+import { postSchema } from "./postSchema.js";
+import { postResolver } from "./postResolvers.js";
 
 async function boostrap() {
   const app = express();
   const server = new ApolloServer({
-    typeDefs: productSchema,
-    resolvers: {},
+    typeDefs: postSchema,
+    resolvers: postResolver,
   });
   const port = 5000;
 
