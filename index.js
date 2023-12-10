@@ -3,33 +3,12 @@ import bodyParser from "body-parser";
 import express from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
+import { productSchema } from "./productSchema.js";
 
 async function boostrap() {
   const app = express();
   const server = new ApolloServer({
-    typeDefs: `type Product{
-        id:ID
-        productName:String
-        category: String
-        price: Int
-        seller:[User]
-    }
-    
-    type User{
-        name:String
-        email:String
-        userType: userType
-    }
-    
-    enum userType{
-        Seller
-        Customer
-        Admin
-    }
-    
-    type Query {
-        getProduct(id:ID):Product
-    }`,
+    typeDefs: productSchema,
     resolvers: {},
   });
   const port = 5000;
